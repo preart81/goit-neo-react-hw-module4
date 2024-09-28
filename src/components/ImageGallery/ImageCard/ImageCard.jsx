@@ -1,6 +1,6 @@
 import css from './ImageCard.module.css';
 
-export default function ImageCard({ thumb, full, alt }) {
+export default function ImageCard({ thumb, alt }) {
   return (
     <img
       className={css.ImageCard}

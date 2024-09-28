@@ -1,11 +1,11 @@
 .SearchBar {
   position: sticky;
   top: 0;
-  z-index: 1000;
   background-color: rgb(92, 92, 92);
   padding: 10px;
   box-shadow: 0px 6px 2px 0px rgba(0, 0, 0, 0.2);
   outline: none;
+  z-index: 100;
 }
 
 .SearchForm {
