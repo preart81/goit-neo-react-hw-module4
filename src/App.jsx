@@ -5,10 +5,11 @@ Modal.setAppElement('#root');
 
 import './App.css';
 import ErrorMessages from './components/ErrorMessages/ErrorMessages';
-import ImageGallery from './components/ImageGallery/ImageCard/ImageGallery';
+import ImageGallery from './components/ImageGallery/ImageGallery';
 import Loader from './components/Loader/Loader';
 import LoadMore from './components/LoadMore/LoadMore';
 import SearchBar from './components/SearchBar/SearchBar';
+import ImageModal from './components/ImageModal/ImageModal';
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -52,16 +53,16 @@ function App() {
 
   // Modal
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {
-    setIsOpen(true);
+    setModalIsOpen(true);
   }
 
   function afterOpenModal() {}
 
   function closeModal() {
-    setIsOpen(false);
+    setModalIsOpen(false);
   }
 
   const handleImageClick = image => {
@@ -69,8 +70,6 @@ function App() {
     openModal();
     // console.log(image);
   };
-
-  // openModal();
 
   return (
     <>
@@ -97,31 +96,11 @@ function App() {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        // style={modalCustomStyles}
         contentLabel="Image preview"
       >
         {selectedImage && (
-          <>
-            <div className="modal-loader">
-              <p>Loading</p>
-              <Loader />
-            </div>
-            <a
-              href={selectedImage.links.html}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                className="modal-image"
-                src={selectedImage.urls.regular}
-                alt={selectedImage.alt_description}
-              />
-            </a>
-            <p className="image-info info-resolution">
-              {selectedImage.width}×{selectedImage.height}
-            </p>
-            {/* <button onClick={closeModal}>Close</button> */}
-          </>
+          <ImageModal selectedImage={selectedImage} />
+          /* <button onClick={closeModal}>Close</button> */
         )}
       </Modal>
     </>

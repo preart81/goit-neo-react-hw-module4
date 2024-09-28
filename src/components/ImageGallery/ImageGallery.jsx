@@ -1,4 +1,4 @@
-import ImageCard from './ImageCard';
+import ImageCard from '../ImageCard/ImageCard';
 import css from './ImageGallery.module.css';
 
 export default function ImageGallery({ photos, onImageClick }) {
@@ -10,10 +10,7 @@ export default function ImageGallery({ photos, onImageClick }) {
           className={css.ImageGalleryItem}
           onClick={() => onImageClick(photo)}
         >
-          <ImageCard
-            thumb={photo.urls.small}
-            alt={photo.alt_description}
-          />
+          <ImageCard thumb={photo.urls.small} alt={photo.alt_description} />
         </li>
       ))}
     </ul>
