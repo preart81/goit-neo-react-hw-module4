@@ -3,7 +3,7 @@ import css from './SearchBar.module.css';
 export default function SearchBar({ onUpdateQuery, children }) {
   const handleSubmit = event => {
     event.preventDefault();
-    onUpdateQuery(event.target.query.value);
+    onUpdateQuery(event.target.query.value.trim());
     event.target.reset();
   };
 

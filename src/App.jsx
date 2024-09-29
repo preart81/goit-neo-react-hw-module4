@@ -10,6 +10,8 @@ import Loader from './components/Loader/Loader';
 import LoadMore from './components/LoadMore/LoadMore';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageModal from './components/ImageModal/ImageModal';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -44,12 +46,30 @@ function App() {
   }, [page, searchQuery]);
 
   const handleUpdateQuery = query => {
-    setSearchQuery(query);
-    setPage(1);
-    setTotalPages(0);
-    setPhotos([]);
-    closeModal();
+    if (!query) {
+      iziToast.error({
+        // title: 'Error',
+        message: 'Please enter a query',
+      });
+      return;
+    } else if (query === searchQuery) {
+      iziToast.info({
+        // title: 'Info',
+        message: 'You entered the same query.',
+      });
+    } else {
+      setSearchQuery(query);
+      setPage(1);
+      setTotalPages(0);
+      setPhotos([]);
+      closeModal();
+    }
   };
+
+  iziToast.settings({
+    position: 'topRight',
+    transitionIn: 'bounceInDown',
+  });
 
   // Modal
 
