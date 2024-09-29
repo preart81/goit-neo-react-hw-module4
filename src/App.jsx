@@ -55,15 +55,15 @@ function App() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function openModal() {
+  const openModal = () => {
     setModalIsOpen(true);
-  }
+  };
 
-  function afterOpenModal() {}
+  const afterOpenModal = () => {};
 
-  function closeModal() {
+  const closeModal = () => {
     setModalIsOpen(false);
-  }
+  };
 
   const handleImageClick = image => {
     setSelectedImage(image);
@@ -98,10 +98,10 @@ function App() {
         onRequestClose={closeModal}
         contentLabel="Image preview"
       >
-        {selectedImage && (
+        {
           <ImageModal selectedImage={selectedImage} />
           /* <button onClick={closeModal}>Close</button> */
-        )}
+        }
       </Modal>
     </>
   );
