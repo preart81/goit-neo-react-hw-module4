@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { fetchPhotos } from './services/api';
-import Modal from 'react-modal';
-Modal.setAppElement('#root');
-
 import './App.css';
 import ErrorMessages from './components/ErrorMessages/ErrorMessages';
 import ImageGallery from './components/ImageGallery/ImageGallery';
@@ -71,15 +68,13 @@ function App() {
     transitionIn: 'bounceInDown',
   });
 
+  
   // Modal
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
     setModalIsOpen(true);
   };
-
-  const afterOpenModal = () => {};
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -109,20 +104,13 @@ function App() {
           Load {isLoading ? <Loader /> : ' more'}
         </LoadMore>
       )}
-
-      <Modal
-        className="Modal"
-        overlayClassName="Overlay"
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        contentLabel="Image preview"
-      >
-        {
-          <ImageModal selectedImage={selectedImage} />
-          /* <button onClick={closeModal}>Close</button> */
-        }
-      </Modal>
+      {selectedImage && (
+        <ImageModal
+          selectedImage={selectedImage}
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 }
